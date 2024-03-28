@@ -12,28 +12,28 @@
 
     <ContentPage.Resources>
         <DataTemplate x:Key="InformationMessageTemplate">
-            <Label Text="{Binding Text}" FontSize="18" TextColor="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource White}}">
+            <Label x:DataType="local:OutputMessage" Text="{Binding Text}" FontSize="18" TextColor="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource White}}">
                 <Label.GestureRecognizers>
                     <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" />
                 </Label.GestureRecognizers>
             </Label>
         </DataTemplate>
         <DataTemplate x:Key="RecognizedTextMessageTemplate">
-            <Label Text="{Binding Text}" FontSize="18" TextColor="#3399FF" HorizontalOptions="End">
+            <Label x:DataType="local:OutputMessage" Text="{Binding Text}" FontSize="18" TextColor="#3399FF" HorizontalOptions="End">
                 <Label.GestureRecognizers>
                     <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" />
                 </Label.GestureRecognizers>
             </Label>
         </DataTemplate>
         <DataTemplate x:Key="TranslatedTextMessageTemplate">
-            <Label Text="{Binding Text}" FontSize="18" TextColor="#19BA00">
+            <Label x:DataType="local:OutputMessage" Text="{Binding Text}" FontSize="18" TextColor="#19BA00">
                 <Label.GestureRecognizers>
                     <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" />
                 </Label.GestureRecognizers>
             </Label>
         </DataTemplate>
         <DataTemplate x:Key="ErrorMessageTemplate">
-            <Label Text="{Binding Text}" FontSize="18" TextColor="#FF0026">
+            <Label x:DataType="local:OutputMessage" Text="{Binding Text}" FontSize="18" TextColor="#FF0026">
                 <Label.GestureRecognizers>
                     <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" />
                 </Label.GestureRecognizers>
@@ -55,6 +55,7 @@
         </Grid.RowDefinitions>
         <StackLayout Grid.Row="0" Spacing="20">
             <Picker
+                x:DataType="local:MainPageViewModel"
                 Title="From"
                 ItemsSource="{Binding Model.SourceLanguageVoiceItems}"
                 ItemDisplayBinding="{Binding LanguageNameAndLocale}"
@@ -68,6 +69,7 @@
                 </Picker.Behaviors>
             </Picker>
             <Picker
+                x:DataType="local:MainPageViewModel"
                 Title="To"
                 ItemsSource="{Binding Model.TargetLanguageVoiceItems}"
                 ItemDisplayBinding="{Binding LanguageNameAndVoice}"
@@ -81,6 +83,7 @@
                 </Picker.Behaviors>
             </Picker>
             <Entry
+                x:DataType="local:MainPageViewModel"
                 Placeholder="Text"
                 Text="{Binding InputText}"
                 MaxLength="10000"
@@ -96,18 +99,21 @@
                     <ColumnDefinition Width="Auto" />
                 </Grid.ColumnDefinitions>
                 <Button
+                    x:DataType="local:MainPageViewModel"
                     Grid.Column="0"
                     Text="Speak"
                     Margin="4"
                     Command="{Binding SpeakCommand}"
                     IsEnabled="{Binding IsReady}" />
                 <Button
+                    x:DataType="local:MainPageViewModel"
                     Grid.Column="1"
                     Text="Send"
                     Margin="4"
                     Command="{Binding SendCommand}"
                     IsEnabled="{Binding IsReady}" />
                 <Button
+                    x:DataType="local:MainPageViewModel"
                     Grid.Column="2"
                     Text="Close"
 					Margin="4"
@@ -119,6 +125,7 @@
             x:Name="scvMain"
             VerticalOptions="Fill">
             <StackLayout
+                x:DataType="local:MainPageViewModel"
                 x:Name="stlMain"
                 Spacing="10"
                 BindableLayout.ItemsSource="{Binding OutputMessages}"
@@ -129,6 +136,7 @@
             HorizontalOptions="Center"
             VerticalOptions="Center">
             <ActivityIndicator
+                x:DataType="local:MainPageViewModel"
                 WidthRequest="25"
                 HeightRequest="25"
                 HorizontalOptions="Center"
